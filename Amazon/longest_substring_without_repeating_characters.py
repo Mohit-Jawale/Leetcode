@@ -4,17 +4,15 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
-      
- 
-        ans=0 
+        ans=0
         for j in range(0,len(s)):
-            temp = []
+            temp = {}
             for i in range(j,len(s)):
-                if s[i] not in temp:
-                    temp.append(str(s[i]))
+                if not temp.get(s[i]):
+                    temp[str(s[i])]=1
                 else:
                     break   
-            if len(temp)>ans:
-                ans = len(temp)    
+            if len(temp.keys())>ans:
+                ans = len(temp.keys())    
+        return ans   
             
-        return ans  
