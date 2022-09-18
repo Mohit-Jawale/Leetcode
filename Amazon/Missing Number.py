@@ -5,10 +5,12 @@ class Solution(object):
         :rtype: int
         """
         
-        nums.sort()
-        count = 0
+        dict = {}
+        for j in nums:
+            dict[j]=1
+            
         for i in range(0,len(nums)):
-            if (i) == nums[i]:
+            if dict.get(i):
                 pass
             else:
                 return i
