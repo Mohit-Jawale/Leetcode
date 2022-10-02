@@ -1,47 +1,36 @@
 class Solution:
-    
-
- 
-    def findCircleNum(self, isConnected: List[List[int]]) -> int:
+    def countComponents(self, n: int, edges: List[List[int]]) -> int:
         
-        size = len(isConnected)
-        print(size)
-        root = [i for i in range(size)]
-        print(root)
-        rank = [1]*(size)
-        provinces =size
+        root = [i for i in range(n)]
+        rank = [1]* n
+        components = n
+        
+        
         
         def find(x):
             if x == root[x]:
                 return x
             root[x] = find(root[x])
             return root[x]
-
-        def union(x,y):
-            rootX = find(x)
-            rootY = find(y)
-            nonlocal provinces
+        
+        def union(node):
+            rootX = find(node[0])
+            rootY = find(node[1])
+            nonlocal components
             if rootX != rootY:
-                if rank[rootX] > rank[rootY]:
-                    root[rootY] = root[rootX]
-                elif rank[rootY] > rank[rootX]:   
-                    root[rootX] = root[rootY]
-                else:
+                if rank[rootX]>rank[rootY]:
                     root[rootY] = rootX
+                elif rank[rootY]>rank[rootX]:
+                    root[rootX] = rootY
+                else:
+                    root[rootY]=rootX
                     rank[rootX]+=1
-                provinces-=1    
-                 
+                components-=1  
+                
+        for i in edges:
+            union(i)
+        return(components)    
+    
 
 
-    
-    
-        for i in range(size):
-            for j in range(size):
-                if isConnected[i][j]==1 and i<=j:
-                    union(i,j)
-                    print(i,j)
-        print(provinces)
-        print(rank)
-        print(root)
-        return provinces
         
