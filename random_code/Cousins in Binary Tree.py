@@ -4,6 +4,34 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
+#### one pass solution 
+
+  def isCousins(self, root: Optional[TreeNode], x: int, y: int) -> bool:
+            res = []
+           
+            def cousins(node,parent,depth):
+                if not node:
+                    return 
+                if node.val == x or node.val == y:
+                    res.append((depth,parent))
+                
+                ans_left = cousins(node.left,node,depth+1)
+                ans_right = cousins(node.right,node,depth+1)
+                
+            
+            cousins(root,None,0)
+            a,b = res
+          
+            if a[0] == b[0] and a[1]!=b[1]:
+                return True
+            else:
+                return False
+
+
+
+
+
 class Solution:
     def isCousins(self, root: Optional[TreeNode], x: int, y: int) -> bool:
             parent_n = None
