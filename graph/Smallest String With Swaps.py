@@ -24,8 +24,6 @@ class Solution:
                     root[rootY] = rootX
                     rank[rootX]+=1
 
-
-
              
 
         for i in pairs:
