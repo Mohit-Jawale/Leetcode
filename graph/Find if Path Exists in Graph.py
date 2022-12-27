@@ -9,7 +9,7 @@ class Solution:
             
             while stack:
                 
-                node = stack.pop(0)
+                node = stack.pop()
                 
                 if node == end:
                     return True
